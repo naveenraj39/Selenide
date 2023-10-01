@@ -1,0 +1,1 @@
+{"uuid":"a849b567-443b-40e4-a5f5-32419ab73b22","name":"LoginViaPlatformTest","children":["09414733-0041-4056-8bb8-dcf8b2605e2a","95bf1a72-8537-4ce3-b949-4a25c0426d34"],"befores":[{"name":"beforeAll","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1696171143046,"stop":1696171158312}],"afters":[],"start":1696171141813,"stop":1696171170550}
