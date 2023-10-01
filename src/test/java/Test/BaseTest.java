@@ -21,7 +21,7 @@ import java.util.Properties;
 // @Log4j2
 public class BaseTest{
    
-    @Test
+  @BeforeAll
     public void beforeAll() throws IOException {
         Properties config = new Properties();
     	FileInputStream file = new FileInputStream (".//config/config.properties");
