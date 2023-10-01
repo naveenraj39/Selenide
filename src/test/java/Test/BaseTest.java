@@ -20,7 +20,7 @@ import java.util.Properties;
 @TestInstance(Lifecycle.PER_CLASS)
 // @Log4j2
 public class BaseTest{
-    @BeforeAll
+   
     @Test
     public void beforeAll() throws IOException {
         Properties config = new Properties();
