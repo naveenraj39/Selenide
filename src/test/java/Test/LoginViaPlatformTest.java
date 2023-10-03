@@ -30,7 +30,7 @@ public class LoginViaPlatformTest extends BaseTest{
   @Test
   
     
-    public void TRIO_R28_login_as_platform_admin() throws InterruptedException {
+    public void TRIO_R30_login_as_platform_admin() throws InterruptedException {
         $("div[role='button']").click();
         $(byXpath("//span[normalize-space()='Test_Org_1']")).click();
         $(".MuiButton-label").click();
