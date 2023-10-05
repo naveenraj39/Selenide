@@ -18,7 +18,7 @@ import java.io.*;
 import java.util.Properties;
 
 @TestInstance(Lifecycle.PER_CLASS)
-// @Log4j2
+ @Log4j2
 public class BaseTest{
    
   @BeforeAll
@@ -29,11 +29,11 @@ public class BaseTest{
     	String driver = config.getProperty("chromeDriver");
     	System.setProperty("webdriver.chrome.driver", driver);
     	
-   // 	configLoader.loadSelenideConfig();
-    //	String baseURL =(String) TmxHubrisWreckerConfigLoader.configurations.get(AppConfigurations.SELENIDE_BASEURL);
+ //  	configLoader.loadSelenideConfig();
+  // 	String baseURL =(String) TmxHubrisWreckerConfigLoader.configurations.get(AppConfigurations.SELENIDE_BASEURL);
     //	log.debug("Got baseURI as {}",baseURL);
     	
-    	open("https://harmony.qa.triomics.in/");
+    	open("https://harmony.qa.triomics.in/login");
     }
     
     TmxHubrisWreckerConfigLoader configLoader=new TmxHubrisWreckerConfigLoader();

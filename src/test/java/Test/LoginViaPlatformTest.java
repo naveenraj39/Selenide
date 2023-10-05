@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
+//@WireMockTest(httpsEnabled =true, httpsPort=8080)
 @TestInstance(Lifecycle.PER_CLASS)
 public class LoginViaPlatformTest extends BaseTest{
 
