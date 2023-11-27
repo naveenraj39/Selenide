@@ -33,9 +33,11 @@ public class LoginViaPlatformTest extends BaseTest{
   
     
     public void TRIO_R30_login_as_platform_admin() throws InterruptedException {
-        $("div[role='button']").click();
-        $(byXpath("//span[normalize-space()='Test_Org_1']")).click();
-        $(".MuiButton-label").click();
+        $(byXpath("//*[@id='dropdown-selectorganisation']")).click();
+        $(byXpath("//*[@title='Clear']")).click();
+        $(byXpath("//*[@id='dropdown-selectorganisation']")).sendKeys("Test_Org_1");
+        $(byXpath("//*[@title='Close']")).click();
+        $(byXpath("//*[@data-testid='cta-cognito-login']")).click();
         
     }
 
