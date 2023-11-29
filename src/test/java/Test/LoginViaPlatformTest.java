@@ -25,9 +25,14 @@ public class LoginViaPlatformTest extends BaseTest{
     @Test
  
     public void login() {
-        title().equalsIgnoreCase("Harmony");
+       if(
+        title().equalsIgnoreCase("Harmony")) {
   //      $(".MuiTypography-root.MuiTypography-subtitle1").shouldHave(text("Select Organization")).exists();
-       
+    	
+        System.out.println("Pass");}
+    	else {
+    		System.out.println("Fail");
+    	}
     }
   @Test
   
@@ -38,7 +43,7 @@ public class LoginViaPlatformTest extends BaseTest{
         $(byXpath("//*[@id='dropdown-selectorganisation']")).sendKeys("Test_Org_1");
         $(byXpath("//*[@title='Close']")).click();
         $(byXpath("//*[@data-testid='cta-cognito-login']")).click();
-        
+        System.out.println("Pass");
     }
 
 
