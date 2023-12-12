@@ -33,7 +33,7 @@ public class BaseTest{
   // 	String baseURL =(String) TmxHubrisWreckerConfigLoader.configurations.get(AppConfigurations.SELENIDE_BASEURL);
     //	log.debug("Got baseURI as {}",baseURL);
     	
-    	open("https://harmony.qa.triomics.in/login");
+    	open("https://harmony.qa.triomics.in");
     }
     
     TmxHubrisWreckerConfigLoader configLoader=new TmxHubrisWreckerConfigLoader();
