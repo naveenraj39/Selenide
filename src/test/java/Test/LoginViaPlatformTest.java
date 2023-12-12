@@ -47,6 +47,13 @@ public class LoginViaPlatformTest extends BaseTest{
     }
 
 
+  @AfterAll
+  
+  public void Reporting() throws InterruptedException {
+	  Thread.sleep(6000);
+	  Reader read = new Reader();
+	  read.report();
+  }
   
 
  /*   protected void waitUntilPagesIsLoaded() {

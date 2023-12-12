@@ -23,7 +23,7 @@ public class Reader {
 	static String name;
 	static String status;
 	
-	public static void main(String []args)  {
+	public  void report()  {
 		int rowNumber = 1;
 		int testCell=0;
 		int statusCell=1;
