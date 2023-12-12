@@ -31,7 +31,7 @@ public class BaseTest{
     public void beforeAll() throws IOException {
 
        
-	 WebDriverManager.chromedriver().driverVersion("119.0.6045.123").setup();
+	 WebDriverManager.chromedriver().driverVersion("120.0.6099.71").setup();
   	
  // 	configLoader.loadSelenideConfig();
   //	String baseURL =(String) TmxHubrisWreckerConfigLoader.configurations.get(AppConfigurations.SELENIDE_BASEURL);
