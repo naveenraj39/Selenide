@@ -190,7 +190,7 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>6.16.0</version>
+            <version>7.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -261,8 +261,27 @@
             <artifactId>allure-junit5</artifactId>
             <version>${allure.junit5.version}</version>
         </dependency>
+     <!-- Apache-->
      
- 
+ <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>5.2.3</version>
+</dependency>
+
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>5.2.3</version>
+</dependency>
+
+<!-- webDriverManager-->
+
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>5.5.3</version>
+</dependency>
        
     </dependencies>
        <repositories>
@@ -346,11 +365,16 @@
                         <version>${junit.jupiter.version}</version>
                     </dependency>
                     
+                    <!--Json-->
                     <dependency>
-  <groupId>org.wiremock</groupId>
-  <artifactId>wiremock</artifactId>
-  <version>3.2.0</version>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20231013</version>
 </dependency>
+
+<!-- Apache POI-->
+
+      
                 </dependencies>
             </plugin>
              <plugin>

@@ -4,6 +4,7 @@ package Test;
 
 
 import Test.BaseTest;
+import jsonParser.Reader;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -11,21 +12,20 @@ import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.title;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
-//@WireMockTest(httpsEnabled =true, httpsPort=8080)
-@TestInstance(Lifecycle.PER_CLASS)
+
+
 public class LoginViaPlatformTest extends BaseTest{
-
-
-   
     @Test
  
     public void login() {
-       if(
+
+    	if(
         title().equalsIgnoreCase("Harmony")) {
   //      $(".MuiTypography-root.MuiTypography-subtitle1").shouldHave(text("Select Organization")).exists();
     	
@@ -46,6 +46,8 @@ public class LoginViaPlatformTest extends BaseTest{
         System.out.println("Pass");
     }
 
+
+  
 
  /*   protected void waitUntilPagesIsLoaded() {
         $(byText("Sign in with your username and password")).should(appear, Duration.ofSeconds(2));
