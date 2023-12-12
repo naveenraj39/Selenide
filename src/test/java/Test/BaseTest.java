@@ -33,8 +33,8 @@ public class BaseTest{
        
 	 WebDriverManager.chromedriver().driverVersion("119.0.6045.123").setup();
   	
-  	configLoader.loadSelenideConfig();
-  	String baseURL =(String) TmxHubrisWreckerConfigLoader.configurations.get(AppConfigurations.SELENIDE_BASEURL);
+ // 	configLoader.loadSelenideConfig();
+  //	String baseURL =(String) TmxHubrisWreckerConfigLoader.configurations.get(AppConfigurations.SELENIDE_BASEURL);
   	open("https://harmony.qa.triomics.in/");
     }
     
