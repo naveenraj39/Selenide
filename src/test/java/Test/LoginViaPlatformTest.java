@@ -11,14 +11,21 @@ import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.title;
 
+import java.time.Duration;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 
 import Resource.Reader;
+import Resource.baseClass;
 
 
 public class LoginViaPlatformTest extends BaseTest{
@@ -50,16 +57,16 @@ public class LoginViaPlatformTest extends BaseTest{
   @Test
   
   public void enterCreds() throws Exception {
-	  Thread.sleep(6000);
-	  $(byXpath("(//*[@name='username'])[2]")).sendKeys("siteadm.qa@mailinator.com");
-	  $(byXpath("(//*[@id='signInFormPassword'])[2]")).sendKeys("Hello@123");
+	  Thread.sleep(10000);
+	  $(byXpath("(//*[@name='username'])[1]")).sendKeys("siteadm.qa@mailinator.com");
+	  $(byXpath("(//*[@id='signInFormPassword'])[1]")).sendKeys("Hello@123");
 	  $(byXpath("(//*[@value='Sign in'])[2]")).click();
   }
 
   @AfterAll
   
   public void Reporting() throws InterruptedException {
-	  Thread.sleep(20000);
+	  Thread.sleep(6000);
 	  Reader read = new Reader();
 	  read.report();
   }
