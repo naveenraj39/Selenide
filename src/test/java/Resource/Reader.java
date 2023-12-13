@@ -35,9 +35,9 @@ public class Reader {
 		cell2.setCellValue("Test Case Name");
 		XSSFCell cell3 = row1.createCell(1);
 		cell3.setCellValue("Status");
-		XSSFCell cell4 = row1.createCell(1);
+		XSSFCell cell4 = row1.createCell(2);
 		cell4.setCellValue("Expected Output");
-		XSSFCell cell5 = row1.createCell(1);
+		XSSFCell cell5 = row1.createCell(3);
 		cell5.setCellValue("Actual Output");
 		try {
 			
