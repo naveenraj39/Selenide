@@ -51,9 +51,9 @@ public class LoginViaPlatformTest extends BaseTest{
   
   public void enterCreds() throws Exception {
 	  Thread.sleep(6000);
-	  $(byXpath("//*[@class='modal-content background-customizable modal-content-mobile visible-xs visible-sm']//child::div//child::input[@id='signInFormUsername']")).sendKeys("siteadm.qa@mailinator.com");
-	  $(byXpath("(//*[@id='signInFormPassword'])[1]")).sendKeys("Hello@123");
-	  $(byXpath("(//*[@name='signInSubmitButton'])[1]")).click();
+	  $(byXpath("(//*[@name='username'])[2]")).sendKeys("siteadm.qa@mailinator.com");
+	  $(byXpath("(//*[@id='signInFormPassword'])[2]")).sendKeys("Hello@123");
+	  $(byXpath("(//*[@value='Sign in'])[2]")).click();
   }
 
   @AfterAll
