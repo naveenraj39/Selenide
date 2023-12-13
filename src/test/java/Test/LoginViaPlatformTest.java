@@ -25,6 +25,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 
 import Resource.Reader;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 
 
 
@@ -33,6 +36,8 @@ public class LoginViaPlatformTest extends BaseTest{
 	
 	
     @Test
+    @Description("Check Title")
+    
  
     public void login() {
 
@@ -46,6 +51,8 @@ public class LoginViaPlatformTest extends BaseTest{
     	}
     }
   @Test
+  @Description("Selecting Organisation")
+  @Severity(SeverityLevel.BLOCKER)
   
     
     public void TRIO_R30_login_as_platform_admin() throws InterruptedException {
@@ -53,7 +60,8 @@ public class LoginViaPlatformTest extends BaseTest{
         
   }
   @Test 
-  
+  @Description("Login to Site")
+  @Severity(SeverityLevel.BLOCKER)
      public void TRIO_R31_Select_Org() {
 
         $(byXpath("//*[@id='dropdown-selectorganisation-option-26']")).click();
@@ -65,10 +73,11 @@ public class LoginViaPlatformTest extends BaseTest{
     }
 
   @Test
-  
+  @Description("Login to Site")
+  @Severity(SeverityLevel.BLOCKER)
   public void TRIO_32_Import_Study(){
 	  
-	  $(byXpath("\"//*[@data-testid='import-from-ext-edc'")).click();
+	  $(byXpath("//*[@data-testid='import-from-ext-edc']")).click();
 	 
 	 
   }
