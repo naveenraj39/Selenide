@@ -4,7 +4,6 @@ package Test;
 
 
 import Test.BaseTest;
-import jsonParser.Reader;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -18,6 +17,8 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
+
+import Resource.Reader;
 
 
 public class LoginViaPlatformTest extends BaseTest{
