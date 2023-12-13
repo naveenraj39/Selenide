@@ -42,11 +42,18 @@ public class LoginViaPlatformTest extends BaseTest{
         $(byXpath("//*[@id='dropdown-selectorganisation']")).click();
 //        $(byXpath("//*[@title='Clear']")).click();
 //        $(byXpath("//*[@id='dropdown-selectorganisation']")).sendKeys("DQA SiteN27");
-        $(byXpath("//*[@id='dropdown-selectorganisation-option-0']")).click();
+        $(byXpath("//*[@id='dropdown-selectorganisation-option-26']")).click();
         $(byXpath("//*[@data-testid='cta-cognito-login']")).click();
         System.out.println("Pass");
     }
 
+  @Test
+  
+  public void enterCreds() {
+	  $(byXpath("(//*[@id='signInFormUsername'])[1]")).sendKeys("siteadm.qa@mailinator.com");
+	  $(byXpath("(//*[@id='signInFormPassword'])[1]")).sendKeys("Hello@123");
+	  $(byXpath("(//*[@name='signInSubmitButton'])[1]")).click();
+  }
 
   @AfterAll
   
