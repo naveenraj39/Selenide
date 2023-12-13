@@ -47,9 +47,17 @@ public class LoginViaPlatformTest extends BaseTest{
     
     public void TRIO_R30_login_as_platform_admin() throws InterruptedException {
         $(byXpath("//*[@id='dropdown-selectorganisation']")).click();
-//        $(byXpath("//*[@title='Clear']")).click();
-//        $(byXpath("//*[@id='dropdown-selectorganisation']")).sendKeys("DQA SiteN27");
+        
+  }
+  @Test 
+  
+     public void TRIO_R31_Select_Org() {
+
         $(byXpath("//*[@id='dropdown-selectorganisation-option-26']")).click();
+        
+  }
+  @Test
+  public void cognito_login() {
         $(byXpath("//*[@data-testid='cta-cognito-login']")).click();
         System.out.println("Pass");
     }
