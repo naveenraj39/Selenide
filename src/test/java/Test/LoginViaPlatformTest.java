@@ -3,7 +3,7 @@ package Test;
 
 
 
-import Test.BaseTest;
+
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -25,10 +25,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 
 import Resource.Reader;
-import Resource.baseClass;
+
+
 
 
 public class LoginViaPlatformTest extends BaseTest{
+	
+	
     @Test
  
     public void login() {
@@ -54,21 +57,20 @@ public class LoginViaPlatformTest extends BaseTest{
      public void TRIO_R31_Select_Org() {
 
         $(byXpath("//*[@id='dropdown-selectorganisation-option-26']")).click();
-        
-  }
-  @Test
-  public void cognito_login() {
         $(byXpath("//*[@data-testid='cta-cognito-login']")).click();
+        $(byXpath("(//*[@name='username'])[2]")).sendKeys("siteadm.qa@mailinator.com");
+  	  $(byXpath("(//*[@id='signInFormPassword'])[2]")).sendKeys("Hello@123");
+  	  $(byXpath("(//*[@value='Sign in'])[2]")).click();
         System.out.println("Pass");
     }
 
   @Test
   
-  public void enterCreds() throws Exception {
-	  Thread.sleep(6000);
-	  $(byXpath("(//*[@name='username'])[2]")).sendKeys("siteadm.qa@mailinator.com");
-	  $(byXpath("(//*[@id='signInFormPassword'])[2]")).sendKeys("Hello@123");
-	  $(byXpath("(//*[@value='Sign in'])[2]")).click();
+  public void TRIO_32_Import_Study(){
+	  
+	  $(byXpath("\"//*[@data-testid='import-from-ext-edc'")).click();
+	 
+	 
   }
 
   @AfterAll
