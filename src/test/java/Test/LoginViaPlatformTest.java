@@ -59,7 +59,7 @@ public class LoginViaPlatformTest extends BaseTest{
   @AfterAll
   
   public void Reporting() throws InterruptedException {
-	  Thread.sleep(6000);
+	  Thread.sleep(20000);
 	  Reader read = new Reader();
 	  read.report();
   }
