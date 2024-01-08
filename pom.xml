@@ -190,7 +190,7 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>7.0.2</version>
+            <version>7.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -402,6 +402,7 @@
                 <includes>
                     <include>**/*Test.java</include>
                 </includes>
+                <runOrder>alphabetical</runOrder>
             </configuration>
         </plugin>
     

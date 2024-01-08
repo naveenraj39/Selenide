@@ -18,11 +18,11 @@ import org.openqa.selenium.WebDriver;
 
 import com.codeborne.selenide.commands.TakeScreenshot;
 
-import Test.BaseTest;
+
 
 public class TestWatcher {
 	
-
+WebDriver driver;
 public void onTestFail() {
 	
 	takeScreenshot();
@@ -30,8 +30,7 @@ public void onTestFail() {
 
 	
 public byte[] takeScreenshot()  {
-	baseClass.webDriver();
-	WebDriver driver = baseClass.get();
+	
 	TakesScreenshot tk = (TakesScreenshot) driver;
 	return tk.getScreenshotAs(OutputType.BYTES);
 	

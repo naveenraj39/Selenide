@@ -1,0 +1,1 @@
+{"uuid":"9c93c884-8843-4d80-9493-7abf0e011a55","name":"Test2_StudySetupTest","children":["22f5bc0e-15c2-4fc2-931d-b16cd9cee2ff","58b154c4-76d6-4dc4-b23f-75e1e1b99c2a"],"befores":[{"name":"browserTest","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1704716241468,"stop":1704716278031}],"afters":[],"start":1704716241465,"stop":1704716350421}
