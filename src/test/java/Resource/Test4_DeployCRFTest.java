@@ -1,4 +1,4 @@
-package Test;
+package Resource;
 
 
 import static com.codeborne.selenide.Selenide.open;
@@ -30,8 +30,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-
-import Resource.Reader;
 
 
 

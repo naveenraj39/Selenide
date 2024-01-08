@@ -250,7 +250,7 @@ public class Test1_ImportTest {
     	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Forms List']")));
     	
     	int row = d.findElements(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody/tr")).size();
-    	int col = d.findElements(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/thead/tr/th")).size();
+    	
     	
     	for(int r=1;r<=row;r++) {
     		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody/tr["+r+"]/td[4]")));
@@ -269,12 +269,14 @@ public class Test1_ImportTest {
 
 
     }
+    
     @Test
     @Order(10)
     public void ENV10_linkCrfVersionTest() throws InterruptedException, IOException {
-    	
-    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='logoutModalActionClick']")));
-    	d.findElement(By.xpath("//*[@data-testid='logoutModalActionClick']")).click();
+		String status = d.findElement(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody/tr[10]/td[4]")).getText();
+    if (status.equals("Saved")) {
+   	
+   	d.findElement(By.xpath("//*[@data-testid='logoutModalActionClick']")).click();
     	
     	
     	BufferedReader bf = new BufferedReader(new FileReader(".//target/file.txt"));
@@ -297,7 +299,7 @@ public class Test1_ImportTest {
     	d.findElement(By.xpath(crfXpath)).click();
     	d.findElement(By.xpath("//*[@data-testid='CTA_ADD_NEW_UPDATE_RT']")).click();
     	
-    }
+    }}
     
     @AfterAll
     @Order(11)

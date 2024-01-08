@@ -1,4 +1,4 @@
-package Test;
+package Resource;
 
 
 import static com.codeborne.selenide.Selenide.open;
