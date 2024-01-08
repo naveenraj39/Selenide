@@ -26,10 +26,15 @@ import com.codeborne.selenide.Configuration;
 
 import com.codeborne.selenide.WebDriverRunner;
 
+import Resource.Reader;
+
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -93,7 +98,7 @@ public class Test1_ImportTest {
     public void ENV02_importStudyTest() throws IOException {
     	
     	
-    	String timeStamp = new SimpleDateFormat(" yyyy-mm-dd HH:mm:ss").format(new Date());
+    	String timeStamp = new SimpleDateFormat(" yyyy-MM-dd 'at' HH:mm:ss").format(new Date());
     	
     	
     	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='import-from-ext-edc']")));
@@ -147,15 +152,164 @@ public class Test1_ImportTest {
     	d.findElement(By.xpath("//*[@data-testid='CTA_CREATE_ENVIRONMENT']")).click();
     	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='SELECT_REMOTE_EDCMediflex']")));
     	d.findElement(By.xpath("//*[@data-testid='SELECT_REMOTE_EDCMediflex']")).click();
-    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Train_Env']")));
-    	d.close();
+    	
+    	
     	
     }
     
+    @Test
+    @Order(5)
+    public void ENV05_createDevEnvRTteamTest() throws InterruptedException, IOException {
+    	
+    	
+    
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='TStepper-research-teams']")));
+    	d.findElement(By.xpath("//*[@data-testid='TStepper-research-teams']")).click();
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Dev_Env']")));
+    	d.findElement(By.xpath("//*[text()='Dev_Env']")).click();
+        d.findElement(By.xpath("//*[@data-testid='CTA_ADD_NEW_RESEARCH_TEAM']")).click();
+        d.findElement(By.xpath("//*[@placeholder='Write the name of the PI']")).sendKeys("PI");
+        d.findElement(By.xpath("//*[@data-testid='CTA_ADD_MEMBER']")).click();
+        d.findElement(By.xpath("//*[@id='MEMBER_NAME']")).click();
+        d.findElement(By.xpath("//*[text()='Jane Doe']")).click();
+        d.findElement(By.xpath("//*[@id='MEMBER_ROLE']")).click();
+        d.findElement(By.xpath("//*[text()='Primary Investigator']")).click();
+        d.findElement(By.xpath("//*[@data-testid='CTA_ADD_NEW_UPDATE_RT']")).click();
+        
+    	
+    }
+    @Test
+    @Order(6)
+    public void ENV06_createTrainEnvRTteamTest() {
    
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Train_Env']")));
+    d.findElement(By.xpath("//*[text()='Train_Env']")).click();
+    d.findElement(By.xpath("//*[@data-testid='TABLE_ROW_0']")).click();
+    d.findElement(By.xpath("//*[@data-testid='CTA_EDIT_RT_CREDENTIAL']")).click();
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@placeholder='Username']")));
+    d.findElement(By.xpath("//*[@placeholder='Username']")).sendKeys("ynaruka");
+    d.findElement(By.xpath("//*[@type='password']")).sendKeys("Triomics####123");
+    d.findElement(By.xpath("//*[@data-testid='modalGenerator-submitCTA']")).click();
    
     
     }
+    
+    @Test
+    @Order(7)
+    public void ENV07_uploadCRFTest() throws InterruptedException, IOException {
+    	
+    	
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='logoutModalActionClick']")));
+    	d.findElement(By.xpath("//*[@data-testid='logoutModalActionClick']")).click();
+    	
+    	BufferedReader bf = new BufferedReader(new FileReader(".//target/file.txt"));
+    	String studyName = bf.readLine();
+    	
+    	String xpath = String.format("//*[text()='%s']//parent::div//parent::div//following-sibling::button[@type='button']", studyName);
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+    	d.findElement(By.xpath(xpath)).click();
+    	d.findElement(By.xpath("//*[@data-testid='sb-action_item']")).click();
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='ADD_CRF_VERSION']")));
+    	d.findElement(By.xpath("//*[@data-testid='ADD_CRF_VERSION']")).click();
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Drag and drop to upload or Browse']")));
+    	File crf = new File(".//Docs/Mediflex_latest_CRF.xlsx");
+    	
+    	WebElement fileInput = d.findElement(By.xpath("//input[@type='file']"));
+    	
+    	fileInput.sendKeys(crf.getAbsolutePath());
+    	
+    	WebElement uploadBtn = d.findElement(By.xpath("//*[@data-testid='modalGenerator-submitCTA']"));
+    	if (uploadBtn.isDisplayed()) {
+    		uploadBtn.click();
+    	}
+    	
+    	
+    }
+
+    @Test
+    @Order(8)
+    public void ENV08_selectCRFTest() throws InterruptedException, IOException {
+  		
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']")));
+    	
+    	String crfVersion = d.findElement(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']//tr[1]/td[1]")).getText();
+    	
+    	FileOutputStream FO = new FileOutputStream(new File(".//Docs/Crf_Version.txt"));
+    	byte[] b = crfVersion.getBytes();
+    	FO.write(b);
+    	d.findElement(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']//tr[1]/td[1]")).click();
+        
+    	
+    }
+    
+    @Test
+    @Order(9)
+    public void ENV09_panelMappingTest() {
+    	
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='TStepper-field-mapping']")));
+    	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Forms List']")));
+    	
+    	int row = d.findElements(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody/tr")).size();
+    	int col = d.findElements(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/thead/tr/th")).size();
+    	
+    	for(int r=1;r<=row;r++) {
+    		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody/tr["+r+"]/td[4]")));
+    		String status = d.findElement(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody/tr["+r+"]/td[4]")).getText();
+    		System.out.println(status);
+    		if(status.equals("Review Needed")) {
+    			
+    			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']//tbody//tr["+r+"]/td[6]//child::button[1]")));
+    			d.findElement(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']//tbody//tr["+r+"]/td[6]//child::button[1]")).click();
+    			d.navigate().refresh();
+    			
+    			
+    		}
+    		
+    	}
+
+
+    }
+    @Test
+    @Order(10)
+    public void ENV10_linkCrfVersionTest() throws InterruptedException, IOException {
+    	
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='logoutModalActionClick']")));
+    	d.findElement(By.xpath("//*[@data-testid='logoutModalActionClick']")).click();
+    	
+    	
+    	BufferedReader bf = new BufferedReader(new FileReader(".//target/file.txt"));
+    	String studyName = bf.readLine();
+    	
+    	String xpath = String.format("//*[text()='%s']//parent::div//parent::div//following-sibling::button[@type='button']", studyName);
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+    	d.findElement(By.xpath(xpath)).click();
+    	d.findElement(By.xpath("//*[@data-testid='sa-action_item']")).click();
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='TStepper-research-teams']")));
+    	d.findElement(By.xpath("//*[@data-testid='TStepper-research-teams']")).click();
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody[1]")));
+    	d.findElement(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody[1]")).click();
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='CTA_EDIT_RESEARCH_TEAM_FORM']")));
+    	d.findElement(By.xpath("//*[@data-testid='CTA_EDIT_RESEARCH_TEAM_FORM']")).click();
+    	d.findElement(By.xpath("//*[@data-testid='RT_FORM_CRF_VERSION']")).click();
+    	BufferedReader bf1 = new BufferedReader(new FileReader(".//Docs/Crf_Version.txt"));
+    	String crf = bf1.readLine();
+    	String crfXpath = String.format("//*[text()='%s']", crf);
+    	d.findElement(By.xpath(crfXpath)).click();
+    	d.findElement(By.xpath("//*[@data-testid='CTA_ADD_NEW_UPDATE_RT']")).click();
+    	
+    }
+    
+    @AfterAll
+    @Order(11)
+    public static void ReportingTest() throws InterruptedException {
+	  	  Thread.sleep(6000);
+	  	  Reader read = new Reader();
+	  	  read.report();
+	    }
+    
+    
+
+}
     
    
 
