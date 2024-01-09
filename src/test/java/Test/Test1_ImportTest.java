@@ -181,9 +181,12 @@ public class Test1_ImportTest {
     @Test
     @Order(6)
     public void ENV06_createTrainEnvRTteamTest() {
-   
+    	
+    
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Train_Env']")));
+    wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[@class='MuiTableHead-root jss528']")));
     d.findElement(By.xpath("//*[text()='Train_Env']")).click();
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='TABLE_ROW_0']")));
     d.findElement(By.xpath("//*[@data-testid='TABLE_ROW_0']")).click();
     d.findElement(By.xpath("//*[@data-testid='CTA_EDIT_RT_CREDENTIAL']")).click();
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@placeholder='Username']")));
@@ -247,7 +250,7 @@ public class Test1_ImportTest {
     public void ENV09_panelMappingTest() {
     	
     	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='TStepper-field-mapping']")));
-    	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Forms List']")));
+    	
     	
     	int row = d.findElements(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody/tr")).size();
     	
@@ -255,14 +258,16 @@ public class Test1_ImportTest {
     	for(int r=1;r<=row;r++) {
     		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody/tr["+r+"]/td[4]")));
     		String status = d.findElement(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody/tr["+r+"]/td[4]")).getText();
-    		System.out.println(status);
+    		
     		if(status.equals("Review Needed")) {
     			
     			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']//tbody//tr["+r+"]/td[6]//child::button[1]")));
     			d.findElement(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']//tbody//tr["+r+"]/td[6]//child::button[1]")).click();
+    			String status1 = d.findElement(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody/tr["+r+"]/td[4]")).getText();
+    		    if (status1.equals("Saved")) {
     			d.navigate().refresh();
     			
-    			
+    		    }
     		}
     		
     	}
