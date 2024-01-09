@@ -182,10 +182,12 @@ public class Test1_ImportTest {
     @Order(6)
     public void ENV06_createTrainEnvRTteamTest() {
     	
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Train_Env']")));
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='FORM_ENVIRONMENT_TYPE']")));
-	d.findElement(By.xpath("//*[@id='FORM_ENVIRONMENT_TYPE']")).click();
+    
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='TStepper-study-environments']")));
+	d.findElement(By.xpath("//*[@data-testid='TStepper-study-environments']")).click();
+	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='TStepper-research-teams']")));
 	d.findElement(By.xpath("//*[@data-testid='TStepper-research-teams']")).click();
+	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Train_Env']")));
     d.findElement(By.xpath("//*[text()='Train_Env']")).click();
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Triomics Healthcare Private Limited']")));
     d.findElement(By.xpath("//*[text()='Triomics Healthcare Private Limited']")).click();
