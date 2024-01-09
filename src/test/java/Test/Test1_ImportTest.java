@@ -321,6 +321,7 @@ public class Test1_ImportTest {
     	wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
     	d.findElement(By.xpath(xpath)).click();
     	d.findElement(By.xpath("//*[@data-testid='sm-action_item']")).click();
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Import MRN']")));
     	d.findElement(By.xpath("//*[text()='Import MRN']")).click();
     	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='ENTER_MRN']")));
     	d.findElement(By.xpath("//*[@id='ENTER_MRN']")).sendKeys("12519");
