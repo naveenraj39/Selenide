@@ -311,7 +311,7 @@ public class Test1_ImportTest {
     
     @Test
     @Order(11)
-    public void ENV10_addParticipantTest() throws IOException {
+    public void ENV10_addParticipantTest() throws IOException, InterruptedException {
     	
     	d.findElement(By.xpath("//*[@data-testid='logoutModalActionClick']")).click();
     	BufferedReader bf = new BufferedReader(new FileReader(".//target/file.txt"));
@@ -329,7 +329,8 @@ public class Test1_ImportTest {
     	d.findElement(By.xpath("//*[@data-testid='fetchParticipantCTA']")).click();
     	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='importParticipantCTA']")));
     	d.findElement(By.xpath("//*[@data-testid='importParticipantCTA']")).click();
-    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='modalGenerator-cancelCTA']")));
+    	Thread.sleep(5000);
+    //	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='modalGenerator-cancelCTA']")));
     	d.findElement(By.xpath("//*[@data-testid='modalGenerator-cancelCTA']")).click();
     	
     	
