@@ -187,6 +187,7 @@ public class Test1_ImportTest {
 	d.findElement(By.xpath("//*[@data-testid='TStepper-study-environments']")).click();
 	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='TStepper-research-teams']")));
 	d.findElement(By.xpath("//*[@data-testid='TStepper-research-teams']")).click();
+	d.navigate().refresh();
 	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Train_Env']")));
     d.findElement(By.xpath("//*[text()='Train_Env']")).click();
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Triomics Healthcare Private Limited']")));
@@ -307,6 +308,33 @@ public class Test1_ImportTest {
     	d.findElement(By.xpath("//*[@data-testid='CTA_ADD_NEW_UPDATE_RT']")).click();
     	
     }
+    
+    @Test
+    @Order(11)
+    public void ENV10_addParticipantTest() throws IOException {
+    	
+    	d.findElement(By.xpath("//*[@data-testid='logoutModalActionClick']")).click();
+    	BufferedReader bf = new BufferedReader(new FileReader(".//target/file.txt"));
+    	String studyName = bf.readLine();
+    	
+    	String xpath = String.format("//*[text()='%s']//parent::div//parent::div//following-sibling::button[@type='button']", studyName);
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+    	d.findElement(By.xpath(xpath)).click();
+    	d.findElement(By.xpath("//*[@data-testid='sm-action_item']")).click();
+    	d.findElement(By.xpath("//*[text()='Import MRN']")).click();
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='ENTER_MRN']")));
+    	d.findElement(By.xpath("//*[@id='ENTER_MRN']")).sendKeys("12519");
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='fetchParticipantCTA']")));
+    	d.findElement(By.xpath("//*[@data-testid='fetchParticipantCTA']")).click();
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='importParticipantCTA']")));
+    	d.findElement(By.xpath("//*[@data-testid='importParticipantCTA']")).click();
+    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='modalGenerator-cancelCTA']")));
+    	d.findElement(By.xpath("//*[@data-testid='modalGenerator-cancelCTA']")).click();
+    	
+    	
+    	
+    }
+    
     
     @AfterAll
     @Order(11)
