@@ -175,14 +175,17 @@ public class Test1_ImportTest {
         d.findElement(By.xpath("//*[@id='MEMBER_ROLE']")).click();
         d.findElement(By.xpath("//*[text()='Primary Investigator']")).click();
         d.findElement(By.xpath("//*[@data-testid='CTA_ADD_NEW_UPDATE_RT']")).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Train_Env']")));
+       
     	
     }
     @Test
     @Order(6)
     public void ENV06_createTrainEnvRTteamTest() {
     	
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='PI']")));
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Train_Env']")));
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='FORM_ENVIRONMENT_TYPE']")));
+	d.findElement(By.xpath("//*[@id='FORM_ENVIRONMENT_TYPE']")).click();
+	d.findElement(By.xpath("//*[@data-testid='TStepper-research-teams']")).click();
     d.findElement(By.xpath("//*[text()='Train_Env']")).click();
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Triomics Healthcare Private Limited']")));
     d.findElement(By.xpath("//*[text()='Triomics Healthcare Private Limited']")).click();
