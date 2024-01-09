@@ -175,19 +175,17 @@ public class Test1_ImportTest {
         d.findElement(By.xpath("//*[@id='MEMBER_ROLE']")).click();
         d.findElement(By.xpath("//*[text()='Primary Investigator']")).click();
         d.findElement(By.xpath("//*[@data-testid='CTA_ADD_NEW_UPDATE_RT']")).click();
-        
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Train_Env']")));
     	
     }
     @Test
     @Order(6)
     public void ENV06_createTrainEnvRTteamTest() {
     	
-    
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Train_Env']")));
-    wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[@class='MuiTableHead-root jss528']")));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='PI']")));
     d.findElement(By.xpath("//*[text()='Train_Env']")).click();
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='TABLE_ROW_0']")));
-    d.findElement(By.xpath("//*[@data-testid='TABLE_ROW_0']")).click();
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Triomics Healthcare Private Limited']")));
+    d.findElement(By.xpath("//*[text()='Triomics Healthcare Private Limited']")).click();
     d.findElement(By.xpath("//*[@data-testid='CTA_EDIT_RT_CREDENTIAL']")).click();
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@placeholder='Username']")));
     d.findElement(By.xpath("//*[@placeholder='Username']")).sendKeys("ynaruka");
@@ -278,8 +276,7 @@ public class Test1_ImportTest {
     @Test
     @Order(10)
     public void ENV10_linkCrfVersionTest() throws InterruptedException, IOException {
-		String status = d.findElement(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']/tbody/tr[10]/td[4]")).getText();
-    if (status.equals("Saved")) {
+		
    	
    	d.findElement(By.xpath("//*[@data-testid='logoutModalActionClick']")).click();
     	
@@ -304,7 +301,7 @@ public class Test1_ImportTest {
     	d.findElement(By.xpath(crfXpath)).click();
     	d.findElement(By.xpath("//*[@data-testid='CTA_ADD_NEW_UPDATE_RT']")).click();
     	
-    }}
+    }
     
     @AfterAll
     @Order(11)
