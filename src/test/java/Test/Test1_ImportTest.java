@@ -27,12 +27,16 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 
 import Resource.Reader;
+import Resource.baseClass;
+import pom.ImportStudy;
+import pom.Login;
 
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -42,13 +46,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-/**s
- * Simple Selenide Test with PageObjects
- */ 
+
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
-public class Test1_ImportTest {
+public class Test1_ImportTest extends baseClass{
 	
 
 	static WebDriver d;
@@ -61,69 +63,91 @@ public class Test1_ImportTest {
 		
 	        // Arranges
 		System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver");
-		
-		d = new ChromeDriver();
+		ChromeOptions option = new ChromeOptions();
+	//	option.addArguments("--headless=new");
+		d = new ChromeDriver(option);
+		login = new Login(d);
+		IS=new ImportStudy(d);
 		d.get("https://edc.devil.triomics.in/");
-		
+			
 		wait = new WebDriverWait(d, Duration.ofSeconds(30));
-		 
-	        
+		 	        
 	    }
 	    
 	    
     @Test
     @Order(1)
     
-    public void ENV01_loginTest() throws Exception {
-    	
-    
-
-       d.findElement(By.xpath("//*[@id='dropdown-selectorganisation']")).click();
-       
-       
-       d.findElement(By.xpath("//*[text()='DEV_Test']")).click();
-       
-       d.findElement(By.xpath("//*[@data-testid='cta-cognito-login']")).click();
-       
-       d.findElement(By.xpath("(//*[@name='username'])[2]")).sendKeys("jane.triomics@mailinator.com");
-       d.findElement(By.xpath("(//*[@id='signInFormPassword'])[2]")).sendKeys("Hello@123");
-       d.findElement(By.xpath("(//*[@value='Sign in'])[2]")).click();
- 	   
- 	  
+    public void Select_Org_from_OrganisationList_Dropdown() throws Exception {
+    	login.selectOrg();  
        
     }
     
     @Test
     @Order(2)
-    public void ENV02_importStudyTest() throws IOException {
-    	
-    	
-    	String timeStamp = new SimpleDateFormat(" yyyy-MM-dd 'at' HH:mm:ss").format(new Date());
-    	
-    	
-    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='import-from-ext-edc']")));
-    	
-    	d.findElement(By.xpath("//*[@data-testid='import-from-ext-edc']")).click();
-    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Medidata Rave']")));
-    	d.findElement(By.xpath("//*[text()='Medidata Rave']")).click();
-    	this.studyName = "DEV_Test_Study" + timeStamp;
-    	
-    	d.findElement(By.xpath("//*[@id='IMPORT_STUDY_NAME']")).sendKeys(studyName);
-    	
-    	d.findElement(By.xpath("//*[@type='button']//child::span[text()='Go to Environments']")).click();
-        
-    	
-   // 	$(By.xpath("//*[@data-testid='import-from-ext-edc']")).click();
-    	
-    	  FileOutputStream FO = new FileOutputStream(".//target/file.txt");
-    	  byte[] b = studyName.getBytes();
-    	  FO.write(b);
-    	 
+    public void Clickon_Cognito_Login_Button() {
+    	login.cognitoLogin();
     }
-    
     
     @Test
     @Order(3)
+    public void Enter_Username_on_the_requiredFields() {
+    	login.enterUserName("jane.triomics@mailinator.com");
+    }
+    
+    @Test
+    @Order(4)
+    public void Enter_Password_on_the_requiredFields() {
+    	login.enterPassword("Hello@123");
+    }
+    
+    @Test
+    @Order(5)
+    public void Click_on_Login_Button() {
+    	login.login();
+    }
+    
+    @Test
+    @Order(6)
+    public void Click_onImport_Button() {
+    	
+    	wait.until(ExpectedConditions.elementToBeClickable
+    			(By.xpath("//*[@data-testid='import-from-ext-edc']")));
+    	IS.clickonImportBtn();
+    }
+    
+    @Test
+    @Order(7)
+    public void Select_EDC_by_Clicking() {
+    	wait.until(ExpectedConditions.elementToBeClickable
+    			(By.xpath("//*[text()='Medidata Rave']")));
+    	IS.selectEDC();
+    	
+    	
+    }
+    
+    @Test
+    @Order(8)
+    public void Enter_Study_Name() throws Exception {
+    	String timeStamp = new SimpleDateFormat(" yyyy-MM-dd 'at' HH:mm:ss").format(new Date());
+    	String studyName = "Regression Test" + timeStamp;
+    	IS.enterStudyName(studyName);
+    	FileOutputStream FO = new FileOutputStream(".//target/file.txt");
+  	  byte[] b = studyName.getBytes();
+  	  FO.write(b);
+    }
+    
+    @Test
+    @Order(9)
+    public void Clickon_GoTo_Environment_Button() {
+    	IS.goToEnv();
+    }
+    
+    
+   
+    
+    @Test
+    @Order(10)
     public void ENV03_createDevEnvironmentTest() {
     	
     	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='FORM_ENVIRONMENT_TYPE']")));
@@ -134,7 +158,7 @@ public class Test1_ImportTest {
     }
     
     @Test
-    @Order(4)
+    @Order(11)
     public void ENV04_createTrainEnvironmentTest() throws InterruptedException {
     	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='OPEN_ENVIRONMENT_CREATE_FORM']")));
     	d.findElement(By.xpath("//*[@data-testid='OPEN_ENVIRONMENT_CREATE_FORM']")).click();
@@ -158,7 +182,7 @@ public class Test1_ImportTest {
     }
     
     @Test
-    @Order(5)
+    @Order(12)
     public void ENV05_createDevEnvRTteamTest() throws InterruptedException, IOException {
     	
     	
@@ -179,7 +203,7 @@ public class Test1_ImportTest {
     	
     }
     @Test
-    @Order(6)
+    @Order(13)
     public void ENV06_createTrainEnvRTteamTest() {
     	
     
@@ -202,7 +226,7 @@ public class Test1_ImportTest {
     }
     
     @Test
-    @Order(7)
+    @Order(14)
     public void ENV07_uploadCRFTest() throws InterruptedException, IOException {
     	
     	
@@ -234,7 +258,7 @@ public class Test1_ImportTest {
     }
 
     @Test
-    @Order(8)
+    @Order(15)
     public void ENV08_selectCRFTest() throws InterruptedException, IOException {
   		
     	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='MuiTable-root MuiTable-stickyHeader']")));
@@ -250,7 +274,7 @@ public class Test1_ImportTest {
     }
     
     @Test
-    @Order(9)
+    @Order(16)
     public void ENV09_panelMappingTest() {
     	
     	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-testid='TStepper-field-mapping']")));
@@ -280,7 +304,7 @@ public class Test1_ImportTest {
     }
     
     @Test
-    @Order(10)
+    @Order(17)
     public void ENV10_linkCrfVersionTest() throws InterruptedException, IOException {
 		
    	
@@ -310,7 +334,7 @@ public class Test1_ImportTest {
     }
     
     @Test
-    @Order(11)
+    @Order(18)
     public void ENV10_addParticipantTest() throws IOException, InterruptedException {
     	
     	d.findElement(By.xpath("//*[@data-testid='logoutModalActionClick']")).click();
@@ -339,7 +363,7 @@ public class Test1_ImportTest {
     
     
     @AfterAll
-    @Order(11)
+    
     public static void ReportingTest() throws InterruptedException {
 	  	  Thread.sleep(6000);
 	  	  Reader read = new Reader();

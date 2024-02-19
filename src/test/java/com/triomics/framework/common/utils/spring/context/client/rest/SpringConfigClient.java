@@ -9,8 +9,11 @@ import lombok.extern.log4j.Log4j2;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.testng.log4testng.Logger;
 
 import java.io.IOException;
 import java.util.Map;
@@ -25,7 +28,7 @@ public class SpringConfigClient {
     @PostConstruct
     public void loadConfig() throws IOException {
         final String cfgSrvEp = System.getProperty(AppConfigConstants.ENV_CONFIGSERVER_ENDPOINT);
-        
+        final org.apache.logging.log4j.Logger log = LogManager.getLogger(SpringConfigClient.class);
         log.info("Loading config for {} environment", cfgSrvEp);
         //fetch config from config server
         //http://localhost:8888/master/admin-service-default.json
